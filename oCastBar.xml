@@ -1,0 +1,45 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+../UI.xsd">
+  <StatusBar name="oCastBarFrame" drawLayer="BORDER" parent="UIParent" setAllPoints="true" toplevel="true" hidden="true">
+    <Size x="195" y="35"/>
+    <Anchors>
+      <Anchor point="BOTTOM" relativePoint="TOP" relativeTo="CastingBarFrame">
+        <Offset x="0" y="35"/>
+      </Anchor>
+    </Anchors>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <!-- Spell Icon Texture -->
+        <Texture name="$parentIcon">
+          <Size x="32" y="32"/>
+          <Anchors>
+            <Anchor point="RIGHT" relativePoint="LEFT"/>
+          </Anchors>
+        </Texture>
+        <Texture name="$parentBackdrop" file="Interface\AddOns\oCastBar\textures\Tube">
+          <Size x="195" y="35"/>
+          <Anchors>
+            <Anchor point="BOTTOM" relativePoint="TOP" relativeTo="CastingBarFrame">
+              <Offset x="0" y="35"/>
+            </Anchor>
+          </Anchors>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK">
+        <!-- Spell Text -->
+        <FontString name="$parentName" inherits="GameFontHighlightLarge">
+          <Anchors>
+            <Anchor point="CENTER"/>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <!-- SCRIPTS -->
+    <BarTexture file="Interface\AddOns\oCastBar\textures\Tube"/>
+    <Scripts>
+      <OnLoad>oCastBarFrame_OnLoad("player")</OnLoad>
+      <OnEvent>oCastBarFrame_OnEvent(event, arg)</OnEvent>
+      <OnUpdate>oCastBarFrame_OnUpdate()</OnUpdate>
+    </Scripts>
+  </StatusBar>
+</Ui>

@@ -1,0 +1,9 @@
+## Interface: 20400
+## Title: OCastBar
+## Notes: A lightweight castbar.
+## Author: Artmi
+## Version: 0.1
+## X-email: alex.borgert@gmail.com
+
+oCastBar.lua
+oCastBar.xml
