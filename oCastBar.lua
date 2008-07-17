@@ -30,19 +30,16 @@ end
 -- FAILED / INTERRUPTED: 1.0, 0.0, 0.0
 -- DELAYED: 1.0, 0.7, 0.0
 -- CHANNEL_START: 0.0, 1.0, 0.0
--- Current bugs:
--- Backdrop(behind the castbar) isn't working, it's uncolored.
--- Channeled spells(implement it!)
 -- Implement:
 -- SavedVariabled & a config, so that user can move the bar, etc..
+-- Channeled spells
 function oCastBarFrame_OnEvent(nevent, narg)
     if nevent == "UNIT_SPELLCAST_START" then
         local spell, rank, displayName, icon, startTime, endTime, isTradeSkill = UnitCastingInfo(this.unit)
         if not spell then 
             return
         end
-        -- The "shadow" behind the bar, so we know how much progress we've
-        -- made!
+ 
         if this.backDrop then
             this.backDrop:SetVertexColor(1.0, 0.7, 0.0)
             this.backDrop:SetAlpha(0.5)
@@ -69,7 +66,6 @@ function oCastBarFrame_OnEvent(nevent, narg)
         this.startTime = startTime / 1000; this.endTime = endTime / 1000
         this:SetMinMaxValues(this.startTime, this.endTime)
         this:SetValue(this.startTime)
-        -- We might have to show the texture here again!
     elseif nevent == "UNIT_SPELLCAST_END" then
         this.isCasting = false
         this:Hide()
@@ -85,7 +81,6 @@ end
 function oCastBarFrame_OnUpdate()
     if this.isCasting then
         local current = GetTime()
-        this.timeUntilDone = this.endTime - this.startTime
         if current > this.endTime then
             current = this.endTime
         end
